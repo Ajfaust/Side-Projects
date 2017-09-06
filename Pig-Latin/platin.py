@@ -10,8 +10,9 @@ def convertTo(toLang, word):
         if fv is 0:
             return word + 'way'
         return word[fv:] + word[:fv] + 'a'
+        
     elif toLang is 'English':
-        if word[-3:] is 'way':
-            return word[:-2]
+        if word[-3:] == 'way':
+            return word[:-3]
         else:
             return word[-2] + word[:-2]

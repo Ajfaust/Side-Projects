@@ -15,3 +15,4 @@ print 'Testing conversion from Pig Latin to English...',
 assert convertTo('English', 'ananaBa') == 'Banana'
 assert convertTo('English', 'ineapplePa') == 'Pineapple'
 assert convertTo('English', 'Appleway') == 'Apple'
+print 'OK'
