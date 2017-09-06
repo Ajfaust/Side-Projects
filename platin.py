@@ -1,8 +1,12 @@
-vowels = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u']
+def findFirstVowel(word):
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    for i in range(len(word)):
+        if word[i].lower() in vowels:
+            return i
 
 def convertTo(toLang, word):
     if toLang is 'Pig':
-        if word[0] in vowels:
+        fv = findFirstVowel(word)
+        if fv is 0:
             return word + 'way'
-        else:
-            return word[1:] + word[0] + 'ay'
+        return word[fv+1:] + word[:fv] + 'a'
