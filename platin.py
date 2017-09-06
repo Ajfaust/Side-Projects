@@ -9,4 +9,9 @@ def convertTo(toLang, word):
         fv = findFirstVowel(word)
         if fv is 0:
             return word + 'way'
-        return word[fv+1:] + word[:fv] + 'a'
+        return word[fv:] + word[:fv] + 'a'
+    elif toLang is 'English':
+        if word[-3:] is 'way':
+            return word[:-2]
+        else:
+            return word[-2] + word[:-2]
