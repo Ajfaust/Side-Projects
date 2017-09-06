@@ -2,9 +2,9 @@ from platin import *
 
 print 'Testing conversion from English to Pig Latin...',
 # Consonants at the beginning
-assert convert('Pig', 'Banana') == 'ananaBay'
-assert convert('Pig', 'Pineapple') == 'ineapplePay'
+assert convertTo('Pig', 'Banana') == 'ananaBay'
+assert convertTo('Pig', 'Pineapple') == 'ineapplePay'
 # Vowels at the beginning
-assert convert('Pig', 'Apple') == 'Appleway'
-assert convert('Pig', 'Orange') == 'Orangeway'
+assert convertTo('Pig', 'Apple') == 'Appleway'
+assert convertTo('Pig', 'Orange') == 'Orangeway'
 print 'OK'

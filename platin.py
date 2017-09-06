@@ -1,6 +1,6 @@
 vowels = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u']
 
-def convert(toLang, word):
+def convertTo(toLang, word):
     if toLang is 'Pig':
         if word[0] in vowels:
             return word + 'way'
