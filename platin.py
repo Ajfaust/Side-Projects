@@ -1,3 +1,8 @@
+vowels = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u']
+
 def convert(toLang, word):
     if toLang is 'Pig':
-        return word[1:] + word[0] + 'ay'
+        if word[0] is in vowels:
+            return word + 'ay'
+        else:
+            return word[1:] + word[0] + 'ay'
