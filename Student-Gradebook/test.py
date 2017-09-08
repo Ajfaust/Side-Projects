@@ -1,5 +1,7 @@
 # A collection of tests for gradebook
 from gradebook import *
+import sys
+import traceback
 
 # Initialize a small class to run tests on
 print 'Initializing test Class...',
@@ -11,14 +13,27 @@ print 'Done'
 
 # Test if string output for student works
 print 'Testing Student string output...',
-assert str(c.students['Andrew']) == 'Name: Andrew\nAverage: 0\nRecent scores: '
+assert str(c.students['Andrew']) == 'Name: Andrew\nAverage: 0.0\nRecent scores: '
 print 'OK'
 
 # Test if average calculation works
 print 'Testing average calculation...',
 scores = [48, 91, 76, 86, 77, 95]
+expected_avg = float(0)
 for score in scores:
     c.students['Mary'].addScore(score)
-c.students['Mary'].calcAvg()
-assert c.students['Mary'].avg == 473 / 600
+    expected_avg += score
+expected_avg /= len(scores)
+
+try:
+    assert c.students['Mary'].avg == 0
+except AssertionError:
+    _,_,tb = sys.exc_info()
+    traceback.print_tb(tb)
+    tb_info = traceback.extract_tb(tb)
+    filename, line, func, text = tb_info[-1]
+    print '\nAn error occured on line {} in statement {}'.format(line, text)
+    print 'Expected avg = {:.2f}'.format(0)
+    print 'Got avg = {:.2f}'.format(c.students['Mary'].avg)
+    exit(1)
 print 'OK'
