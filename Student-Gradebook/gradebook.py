@@ -23,9 +23,25 @@ class Student:
             + '\nRecent scores: ' + ', '.join([str(s) for s in
                 self.scores[-5:]])
 
+    def addScore(self, score):
+        self.scores.append(score)
+
+    def calcAvg(self):
+        self.avg = sum(self.scores) / (100 * len(self.scores))
+
+# Class class
+# @subj: class subject
+# @crn: class crn
+# @students: Dictionary of student names mapped to appropriate Student classes
 class Class:
     def __init__(self, subj, crn, students):
         self.subject = subj
         self.crn = crn
         self.students = students
 
+    def addStudent(self, name):
+        self.students[name] = Student(name, 0, [])
+
+    def printStudentInfo(self, students):
+        for student in self.students:
+            return str(student)
