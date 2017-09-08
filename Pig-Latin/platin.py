@@ -9,3 +9,9 @@ def toPLatin(word):
     if fv is 0:
         return word + 'way'
     return word[fv:] + word[:fv] + 'a'
+
+def convertPhrase(phrase):
+    pl_phrase = []
+    for word in phrase.split():
+        pl_phrase.append(toPLatin(word))
+    return ' '.join(pl_phrase)
