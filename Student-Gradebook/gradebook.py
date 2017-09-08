@@ -14,7 +14,7 @@
 class Student:
     def __init__(self, name, avg, scores):
         self.name = name
-        self.avg = avg
+        self.avg = float(avg)
         self.scores = scores
 
     def __str__(self):
@@ -22,16 +22,17 @@ class Student:
             + '\nAverage: ' + str(self.avg)\
             + '\nRecent scores: ' + ', '.join([str(s) for s in
                 self.scores[-5:]])
-
+    
+    # Adds a new score to the Student's list of scores and calculates the new
+    # average.
     def addScore(self, score):
         self.scores.append(score)
-
-    def calcAvg(self):
-        self.avg = sum(self.scores) / (100 * len(self.scores))
+        n = len(self.scores)
+        self.avg = ((n - 1) * self.avg + score) / n
 
 # Class class
-# @subj: class subject
-# @crn: class crn
+# @subj: Class subject
+# @crn: Class crn
 # @students: Dictionary of student names mapped to appropriate Student classes
 class Class:
     def __init__(self, subj, crn, students):
