@@ -13,7 +13,7 @@ print 'Done'
 
 # Test if string output for student works
 print 'Testing Student string output...',
-assert str(c.students['Andrew']) == 'Name: Andrew\nAverage: 0.0\nRecent scores: '
+assert str(c.students['Andrew']) == 'Name: Andrew\nAverage: 0.0\nRecent scores: \nCurrent grade: N/A'
 print 'OK'
 
 # Test if average calculation works
