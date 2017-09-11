@@ -37,3 +37,9 @@ except AssertionError:
     print 'Got avg = {:.2f}'.format(c.students['Mary'].avg)
     exit(1)
 print 'OK'
+
+# Test if grade conversion works as intended
+print "Testing grade conversion...",
+c.assign_grades_norm()
+assert c.students['Mary'].grade == "C"
+print "OK"
