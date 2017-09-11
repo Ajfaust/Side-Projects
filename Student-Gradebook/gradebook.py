@@ -41,7 +41,7 @@ class Student:
 # @crn: Class crn
 # @students: Dictionary of student names mapped to appropriate Student classes
 class Class:
-    def __init__(self, subj, crn, students):
+    def __init__(self, subj, crn, students={}):
         self.subject = subj
         self.crn = crn
         self.students = students
@@ -49,13 +49,14 @@ class Class:
     def addStudent(self, name):
         self.students[name] = Student(name)
 
-    def printStudentInfo(self, students):
-        for student in self.students:
-            return str(student)
+    def printStudentInfo(self):
+        for name in self.students.keys():
+            return str(self.students[name])
 
-    def assign_grades_norm(self, students):
-        for student in student:
-            if student.scores == []:
+    def assign_grades_norm(self):
+        for name in self.students.keys():
+            student = self.students[name]
+            if len(student.scores) is 0:
                 student.grade = "N/A"
             elif student.avg >= 90:
                 student.grade = "A"
