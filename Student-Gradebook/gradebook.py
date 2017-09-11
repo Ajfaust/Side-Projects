@@ -12,9 +12,9 @@
 # @avg: Student's running average
 # @scores: List of student's scores per assignment
 class Student:
-    def __init__(self, name, avg, scores):
+    def __init__(self, name, scores=[]):
         self.name = name
-        self.avg = float(avg)
+        self.avg = 0.0 if scores == [] else self.calcAvg(scores)
         self.scores = scores
 
     def __str__(self):
@@ -22,6 +22,9 @@ class Student:
             + '\nAverage: ' + str(self.avg)\
             + '\nRecent scores: ' + ', '.join([str(s) for s in
                 self.scores[-5:]])
+
+    def calcAvg(self, scores):
+        return sum(self.scores) / (100 * len(self.scores))
     
     # Adds a new score to the Student's list of scores and calculates the new
     # average.
@@ -41,7 +44,7 @@ class Class:
         self.students = students
 
     def addStudent(self, name):
-        self.students[name] = Student(name, 0, [])
+        self.students[name] = Student(name)
 
     def printStudentInfo(self, students):
         for student in self.students:
