@@ -19,21 +19,21 @@ print 'OK'
 # Test if average calculation works
 print 'Testing average calculation...',
 scores = [48, 91, 76, 86, 77, 95]
-expected_avg = float(0)
+expected_avg = 0.0
 for score in scores:
     c.students['Mary'].addScore(score)
-    expected_avg += score
+    expected_avg += score 
 expected_avg /= len(scores)
 
 try:
-    assert c.students['Mary'].avg == 0
+    assert c.students['Mary'].avg == expected_avg
 except AssertionError:
     _,_,tb = sys.exc_info()
     traceback.print_tb(tb)
     tb_info = traceback.extract_tb(tb)
     filename, line, func, text = tb_info[-1]
     print '\nAn error occured on line {} in statement {}'.format(line, text)
-    print 'Expected avg = {:.2f}'.format(0)
+    print 'Expected avg = {:.2f}'.format(expected_avg)
     print 'Got avg = {:.2f}'.format(c.students['Mary'].avg)
     exit(1)
 print 'OK'
