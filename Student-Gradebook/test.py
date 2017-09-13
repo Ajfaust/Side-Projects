@@ -4,8 +4,8 @@ import sys
 import traceback
 
 # Initialize a small class to run tests on
-print 'Initializing test Class...',
-c = Class("Biology", 83732, {})
+print 'Initializing test Course...',
+c = Course("Biology", 83732, {})
 names = ['Andrew', 'Mary', 'Steven', 'John']
 for name in names:
     c.addStudent(name)

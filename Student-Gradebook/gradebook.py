@@ -38,11 +38,11 @@ class Student:
         n = len(self.scores)
         self.avg = ((n - 1) * self.avg + score) / n
 
-# Class class
-# @subj: Class subject
-# @crn: Class crn
-# @students: Dictionary of student names mapped to appropriate Student classes
-class Class:
+# Course class
+# @subj: Course subject
+# @crn: Course crn
+# @students: Dictionary of student names mapped to appropriate Student courses
+class Course:
     def __init__(self, subj, crn, students={}):
         self.subject = subj
         self.crn = crn
