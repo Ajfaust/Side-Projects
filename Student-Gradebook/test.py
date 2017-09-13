@@ -6,19 +6,33 @@ import traceback
 # Initialize a small class to run tests on
 print 'Initializing test Class...',
 c = Class("Biology", 83732, {})
-names = ['Andrew', 'Mary', 'Steven',  'Alex', 'John']
+names = ['Andrew', 'Mary', 'Steven', 'John']
 for name in names:
     c.addStudent(name)
+an_scores = [56, 78, 98, 90, 94, 87]
+m_scores = [48, 91, 76, 86, 77, 95]
+s_scores = [88, 98, 99, 78, 86, 94]
+j_scores = [67, 56, 65, 45, 76, 55]
+for a in an_scores:
+    c.students['Andrew'].addScore(a)
+for m in m_scores:
+    c.students['Mary'].addScore(m)
+for s in s_scores:
+    c.students['Steven'].addScore(s)
+for j in j_scores:
+    c.students['John'].addScore(j)
 print 'Done'
 
 # Test if string output for student works
 print 'Testing Student string output...',
-assert str(c.students['Andrew']) == 'Name: Andrew\nAverage: 0.0\nRecent scores: \nCurrent grade: N/A'
+assert str(c.students['Andrew']) == 'Name: Andrew\n' + \
+        'Average: 83.83\n' + \
+        'Recent scores: 78, 98, 90, 94, 87\n' + \
+        "Current grade: N/A"
 print 'OK'
 
 # Test if average calculation works
 print 'Testing average calculation...',
-scores = [48, 91, 76, 86, 77, 95]
 expected_avg = 0.0
 for score in scores:
     c.students['Mary'].addScore(score)
