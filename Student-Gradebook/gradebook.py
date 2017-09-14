@@ -88,6 +88,6 @@ class Course:
         return mean, sqrt(stdev_sq)
 
     def updateGrades(self, scale="norm"):
-        stats = self.get_stats() if scale == "bell" else [-1, -1]
+        stats = self.getStats() if scale == "bell" else [-1, -1]
         for student in self.students.values():
             student.calcGrade(stats[0], stats[1])
