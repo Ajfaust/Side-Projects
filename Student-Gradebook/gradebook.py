@@ -78,7 +78,7 @@ class Course:
     
     # Calculates student statistics for bell curve grading.
     # Returns [mean, standard deviation]
-    def get_stats(self):
+    def getStats(self):
         sum_avgs = sum([s.avg for s in self.students.values()])
         mean = sum_avgs / len(self.students)
         stdev_num = 0.0
