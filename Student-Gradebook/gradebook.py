@@ -16,8 +16,8 @@ from math import sqrt
 class Student:
     def __init__(self, name, scores=[]):
         self.name = name
-        self.avg = 0.0 if scores == [] else self.calcAvg()
         self.scores = scores
+        self.avg = 0.0 if scores == [] else self.calcAvg()
         self.grade = "N/A"
 
     def __str__(self):
@@ -37,11 +37,28 @@ class Student:
         self.scores.append(score)
         n = len(self.scores)
         self.avg = ((n - 1) * self.avg + score) / n
+    
+    def calcGrade(self, mean, std_dev):
+        # Calculate grade based on typical percent range if no stats are given
+        if mean < 0:
+            if self.avg >= 90: self.grade = "A"
+            elif self.avg >= 80: self.grade = "B"
+            elif self.avg >= 70: self.grade = "C"
+            elif self.avg >= 60: self.grade = "D"
+            else: self.grade = "F"
+            return
+        
+        # Otherwise, grade on a bell curve, with the average being a C
+        if self.avg >= mean + 2 * std_dev: self.grade = "A"
+        elif self.avg >= mean + std_dev: self.grade = "B"
+        elif self.avg >= mean - std_dev: self.grade = "C"
+        elif self.avg >= mean - 2 * std_dev: self.grade = "D"
+        else: self.grade = "F"
 
 # Course class
 # @subj: Course subject
 # @crn: Course crn
-# @students: Dictionary of student names mapped to appropriate Student courses
+# @students: Dictionary of student names mapped to appropriate Student classes
 class Course:
     def __init__(self, subj, crn, students={}):
         self.subject = subj
@@ -53,7 +70,7 @@ class Course:
 
     def printStudentInfo(self):
         for student in self.students.values():
-            return str(student)
+            print student + '\n' + ('-' * 20)
     
     # Calculates student statistics for bell curve grading.
     # Returns [mean, standard deviation]
@@ -65,20 +82,8 @@ class Course:
             stdev_num += pow((student.avg - mean), 2)
         stdev_sq = stdev_num / (len(self.students) - 1)
         return mean, sqrt(stdev_sq)
-    
-    # Assigns all students a letter grade based on their avg score assuming
-    # a typical grade range.
-    def assign_grades_norm(self):
-        for student in self.students.values():
-            if len(student.scores) is 0:
-                student.grade = "N/A"
-            elif student.avg >= 90:
-                student.grade = "A"
-            elif student.avg >= 80:
-                student.grade = "B"
-            elif student.avg >= 70:
-                student.grade = "C"
-            elif student.avg >= 60:
-                student.grade = "D"
-            else:
-                student.grade = "F"
+
+    def updateGrades(self, scale="norm"):
+        stats = self.get_stats() if scale == "bell" else [-1, -1]
+        for student in self.students.values()[0]:
+            student.calcGrade(stats[0], stats[1])
