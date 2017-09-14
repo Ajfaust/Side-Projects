@@ -12,7 +12,8 @@ class TestStudentMethods(unittest.TestCase):
         self.failUnless(self.s.scores == [56, 78, 98, 90, 94, 87])
     
     def testGrade(self):
-        self.failUnless(self.s.calcGrade(-1, -1) == "B")
+        self.s.calcGrade(-1, -1)
+        self.failUnless(self.s.grade == "B")
     
     def testAddScore(self):
         self.s.addScore(67)
@@ -21,9 +22,11 @@ class TestStudentMethods(unittest.TestCase):
 
 class TestCourseMethods(unittest.TestCase):
     def setUp(self):
-        self.c = Course("Biology", 48364, {'Andrew': [56, 78, 98, 90, 94, 87],
-                                            'Mary': [48, 91, 76, 86, 77, 95],
-                                            'John': [67, 56, 65, 45, 76, 55]})
+        self.c = Course("Biology", 48364, 
+                {'Andrew': Student("Andrew", [56, 78, 98, 90, 94, 87]),
+                 'Mary': Student("Mary", [48, 91, 76, 86, 77, 95]),
+                 'John': Student("John", [67, 56, 65, 45, 76, 55])
+                })
         self.c.updateGrades()
     
     def testGrades(self):
