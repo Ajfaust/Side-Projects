@@ -34,6 +34,18 @@ class TestCourseMethods(unittest.TestCase):
         self.failUnless(self.c.students['Mary'].grade == "C")
         self.failUnless(self.c.students['John'].grade == "D")
 
+    def testStats(self):
+        stats = self.c.get_stats()
+        self.assertAlmostEqual(stats[0], 74.44, places=2)
+        self.assertAlmostEqual(stats[1], 12.19, places=2)
+
+    def testBellCurve(self):
+        self.c.updateGrades("bell")
+        self.failUnless(self.c.students['Andrew'].grade == "C")
+        self.failUnless(self.c.students['Mary'].grade == "C")
+        self.failUnless(self.c.students['John'].grade == "D")
+        
+
 def main():
     unittest.main()
 
