@@ -1,7 +1,7 @@
 # A collection of tests for gradebook
-from gradebook import *
 import sys
 import traceback
+from gradebook import Student, Course
 
 # Initialize a small class to run tests on
 print 'Initializing test Course...',
@@ -25,10 +25,7 @@ print 'Done'
 
 # Test if string output for student works
 print 'Testing Student string output...',
-assert str(c.students['Andrew']) == 'Name: Andrew\n' + \
-        'Average: 83.83\n' + \
-        'Recent scores: 78, 98, 90, 94, 87\n' + \
-        "Current grade: N/A"
+assert str(c.students['Andrew']) == 'Name: Andrew\nAverage: 83.83\nRecent scores: 78, 98, 90, 94, 87\nCurrent grade: N/A'
 print 'OK'
 
 # Test if average calculation works
