@@ -24,8 +24,8 @@ class Student:
     def __str__(self):
         return 'Name: ' + self.name\
                 + '\nAverage: {:.2f}'.format(self.avg)\
-            + '\nRecent scores: ' + ', '.join([str(s) for s in
-                self.scores[-5:]])\
+            + '\nRecent scores: ' + ', '.join(
+                    [str(s) for s in reversed(self.scores[-5:])])\
             + '\nCurrent grade: ' + self.grade
     
     # Calculates student avg based on current scores
@@ -66,16 +66,20 @@ class Course:
         self.crn = crn
         self.students = students
 
+    # Printing out a course will print out info for all registered students
+    def __str__(self):
+        output = ""
+        for student in self.students.values():
+            output += str(student) + '\n'\
+                      + '-' * 20 + '\n'
+        return output
+
     def addStudent(self, name):
         self.students[name] = Student(name)
-
-    def printStudentInfo(self):
-        for student in self.students.values():
-            print student + '\n' + ('-' * 20)
     
     # Calculates student statistics for bell curve grading.
     # Returns [mean, standard deviation]
-    def get_stats(self):
+    def getStats(self):
         sum_avgs = sum([s.avg for s in self.students.values()])
         mean = sum_avgs / len(self.students)
         stdev_num = 0.0
@@ -86,6 +90,6 @@ class Course:
     
     # Updates grades for all students on a normal scale or a bell curve
     def updateGrades(self, scale="norm"):
-        stats = self.get_stats() if scale == "bell" else [-1, -1]
-        for student in self.students.values()[0]:
+        stats = self.getStats() if scale == "bell" else [-1, -1]
+        for student in self.students.values():
             student.calcGrade(stats[0], stats[1])
