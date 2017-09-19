@@ -6,6 +6,7 @@
 # Student Gradebook
 # A simple student gradebook that allows the user to add students to a class and
 # record grades and averages.
+
 from math import sqrt
 
 # Student class
@@ -82,7 +83,8 @@ class Course:
             stdev_num += pow((student.avg - mean), 2)
         stdev_sq = stdev_num / (len(self.students) - 1)
         return mean, sqrt(stdev_sq)
-
+    
+    # Updates grades for all students on a normal scale or a bell curve
     def updateGrades(self, scale="norm"):
         stats = self.get_stats() if scale == "bell" else [-1, -1]
         for student in self.students.values()[0]:
